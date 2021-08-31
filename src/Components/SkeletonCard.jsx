@@ -3,31 +3,28 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 const SkeletonCard = () => {
     return (
-        <div>         
+        <li className="card">         
             <SkeletonTheme color="grey" highlightColor="#444" >
-                <Skeleton height={172.58} width={306.8} count={1} />
-            </SkeletonTheme>
-
-            <SkeletonTheme  color="grey" highlightColor="#444">   
-                <Skeleton circle height={40} width={40} count={1}/>
-            </SkeletonTheme>
-
-            <SkeletonTheme  color="grey" highlightColor="#444">
-                <Skeleton  height={43.2} width={306.8} count={1} />
-            </SkeletonTheme>
+                <Skeleton height={180} className="card-image" />
+                <Skeleton circle height={40} width={40} className="channel-image"  />
 
             
-            <SkeletonTheme  color="grey" highlightColor="#444">
-                <Skeleton  height={18.4} width={29.99} count={1} />
-            </SkeletonTheme>
+                <h4 className="card-title">
+                    <Skeleton height={45} />
+                </h4>
 
-            <SkeletonTheme  color="grey" highlightColor="#444">
-                <Skeleton  height={21.6} width={306.8} count={1} />
+            
+                <p className="card-channel">
+                    <Skeleton  height={20} width={'10%'} />
+                </p>
+                <div className="card-metrics">
+                    <Skeleton  height={22} width={'50%'}/>  • <Skeleton  height={22} width={'30%'}/>
+                </div>
             </SkeletonTheme>
             <br></br>
             <br></br>
 
-        </div>
+        </li>
     )
 }
 
