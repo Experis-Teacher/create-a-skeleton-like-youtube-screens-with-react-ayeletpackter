@@ -2,11 +2,11 @@ import './App.css';
 import dummyData from "./data";
 import CardList from './Components/CardList';
 import { Component } from 'react';
-import SkeletonCard from './Components/SkeletonCard';
+import SkeletonCardList from './Components/SkeletonCardList';
 
 class App extends Component {
-  
-  constructor(props){
+
+  constructor(props) {
     super(props)
     this.state = {
       videos: [],
@@ -15,46 +15,67 @@ class App extends Component {
     }
   }
 
-  setVideosState(videos = []){
-    this.setState({videos})
+  setVideosState(videos = []) {
+    this.setState({ videos })
   }
 
-  setLoadingState(value = false){
-    this.setState({loading: value})
+  setLoadingState(value = false) {
+    this.setState({ loading: value })
   }
-  
+  componentDidMount() {
 
-  componentDidMount(){
     this.setLoadingState(true);
+    this.setVideosState(dummyData);
+
     const timer = setTimeout(() => {
-      this.setVideosState(dummyData);
       this.setLoadingState(false);
     }, 5000);
-    this.setState({timer})
+    this.setState({ timer })
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     clearTimeout(this.state.timer)
   }
 
 
 
-  render(){
-    return (
-      <div className="App">
-         {/* {
-          this.state.videos.map((list, index) => {
-            return (
-              <section key={index}>
-                <h2 className="section-title">{list.section}</h2>
-                <CardList list={list} />
-                <hr />
-              </section>
-            );
-          })} */}
-          <SkeletonCard/>
-      </div>
-    );
+  render() {
+    if (this.state.loading == false) {
+      return (
+        <div className="App">
+          {
+            this.state.videos.map((list, index) => {
+              return (
+                <section key={index}>
+                  <h2 className="section-title">{list.section}</h2>
+                  <CardList list={list} />
+                  <hr />
+                </section>
+              );
+            })}
+          {/* <SkeletonCard/> */}
+        </div>
+      );
+
+    }
+    else {
+      return (
+        <div className="App">
+          {
+            this.state.videos.map((list, index) => {
+              return (
+                <section key={index}>
+                  <h2 className="section-title">{list.section}</h2>
+                  <SkeletonCardList list={list}/>
+                  <hr />
+                </section>
+              );
+            })}
+          {/* <SkeletonCard/> */}
+        </div>
+      );
+
+    }
   }
 }
 
